@@ -9,6 +9,10 @@ public class PermutationinString {
 
 
     public static boolean checkInclusion(String s1, String s2) {
+
+        if (s1.length()>s2.length()) return false;
+
+
         int len = s1.length();
         HashMap<Character, Integer> map1 = new HashMap<>();
         for (int i = 0; i < len; i++) {
@@ -21,7 +25,7 @@ public class PermutationinString {
 
         HashMap<Character, Integer> map2 = new HashMap<>();
 
-//TODO
+
         for (int i = 0; i < len; i++) {
             if (!map2.containsKey(s2.charAt(i))) {
                 map2.put(s2.charAt(i), 1);
@@ -34,13 +38,11 @@ public class PermutationinString {
 
         for (int i = len; i < s2.length(); i++) {
             if (map2.equals(map1)) return true;
-
-            if (map2.containsKey(s2.charAt(i - len + 1))) {
-
-                if (map2.get(s2.charAt(i - len + 1)) == 1) {
-                    map2.remove(s2.charAt(i - len + 1));
+            if (map2.containsKey(s2.charAt(i - len))) {
+                if (map2.get(s2.charAt(i - len)) == 1) {
+                    map2.remove(s2.charAt(i - len));
                 } else {
-                    map2.put(s2.charAt(i - len + 1), map2.get(s2.charAt(i - len + 1)) - 1);
+                    map2.put(s2.charAt(i - len), map2.get(s2.charAt(i - len)) - 1);
                 }
             }
 
